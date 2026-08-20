@@ -25,28 +25,28 @@
             backdrop-filter: blur(10px); /* Efek Kaca Blur */
             -webkit-backdrop-filter: blur(10px);
             color: #000000;
-            padding: 0.75rem 0;
+            padding: 0.5rem 0; /* Diperkecil paddingnya */
             overflow: hidden;
-            margin: 1rem auto 2rem auto; /* Margin agar melayang */
-            border-radius: 16px; /* Sudut membulat */
+            margin: 1rem auto 2rem auto; 
+            border-radius: 12px; 
             width: 100%;
             max-width: 1200px;
-            border: 1px solid rgba(255, 215, 0, 0.4); /* Border emas tipis */
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15); /* Bayangan lembut */
-            text-shadow: 0 1px 1px rgba(255,255,255,0.5); /* Bayangan teks agar membaca di kaca */
+            border: 1px solid rgba(255, 215, 0, 0.4); 
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15); 
+            text-shadow: 0 1px 1px rgba(255,255,255,0.5); 
         }
         .marquee-track {
             display: flex;
             width: max-content;
-            animation: marquee 40s linear infinite; /* Diperlambat dari 20s menjadi 40s */
+            animation: marquee 40s linear infinite; /* Kecepatan slow */
         }
         .marquee-text {
             padding-right: 50px;
-            font-weight: 800;
-            font-size: 1rem;
-            letter-spacing: 1px;
+            font-weight: 700;
+            font-size: 0.85rem; /* Font diperkecil */
+            letter-spacing: 0.3px; /* Spasi antar huruf dirapatkan sedikit */
             white-space: nowrap;
-            text-transform: uppercase;
+            /* text-transform dihilangkan agar menggunakan huruf biasa (Title Case) */
         }
         @keyframes marquee {
             0% { transform: translateX(0); }
@@ -136,10 +136,10 @@
 <!-- HEADER BERJALAN EFEK KACA (GLASS) -->
 <div class="marquee-header">
     <div class="marquee-track">
-        <span class="marquee-text">SELAMAT DATANG DI PAGE INFORMATION-EDUCATION-LEARNING-KNOWLEDGE •</span>
-        <span class="marquee-text">SELAMAT DATANG DI PAGE INFORMATION-EDUCATION-LEARNING-KNOWLEDGE •</span>
-        <span class="marquee-text">SELAMAT DATANG DI PAGE INFORMATION-EDUCATION-LEARNING-KNOWLEDGE •</span>
-        <span class="marquee-text">SELAMAT DATANG DI PAGE INFORMATION-EDUCATION-LEARNING-KNOWLEDGE •</span>
+        <span class="marquee-text">Selamat Datang di Page Information - Education - Learning - Knowledge. Semoga bermanfaat •</span>
+        <span class="marquee-text">Selamat Datang di Page Information - Education - Learning - Knowledge. Semoga bermanfaat •</span>
+        <span class="marquee-text">Selamat Datang di Page Information - Education - Learning - Knowledge. Semoga bermanfaat •</span>
+        <span class="marquee-text">Selamat Datang di Page Information - Education - Learning - Knowledge. Semoga bermanfaat •</span>
     </div>
 </div>
 
