@@ -5,423 +5,389 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materi Administrasi Sistem Jaringan</title>
     <style>
-        :root {
-            --primary: #0F766E;
-            --bg-color: #F8FAFC;
-            --text-main: #1E293B;
-            --text-muted: #64748B;
-            --tip-bg: #ECFDF5;
-            --tip-border: #10B981;
-            --takeaway-bg: #EFF6FF;
-            --takeaway-border: #3B82F6;
-            --code-bg: #1E293B;
-            --code-text: #E2E8F0;
-            --card-bg: #FFFFFF;
-            --card-border: #E2E8F0;
-            --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
+        :root { --primary: #0F766E; --bg-color: #F1F5F9; --text-main: #1E293B; --text-muted: #64748B; --tip-bg: #ECFDF5; --tip-border: #10B981; --takeaway-bg: #EFF6FF; --takeaway-border: #3B82F6; --code-bg: #1E293B; --code-text: #E2E8F0; --card-border: #E2E8F0; --hover-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; padding: 2rem 1rem; }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding: 2rem 1rem;
-        }
-
-        .container {
-            max-width: 800px;
+        /* Layout Grid 2 Kolom */
+        .layout-wrapper {
+            max-width: 1200px;
             margin: 0 auto;
-            background: #FFFFFF;
+            display: grid;
+            grid-template-columns: 300px 1fr; /* Kiri 300px, Kanan sisa nya */
+            gap: 2rem;
+        }
+
+        /* SIDEBAR KIRI */
+        .sidebar {
+            background: #FFF;
             border-radius: 16px;
-            padding: 2.5rem 3rem;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+            height: fit-content;
+            position: sticky; /* Membuat sidebar tetap saat di-scroll */
+            top: 2rem;
         }
+        .sidebar h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 1rem; border-bottom: 2px solid #E2E8F0; padding-bottom: 0.5rem; }
+        .module-list { display: flex; flex-direction: column; gap: 0.5rem; }
+        .module-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background-color: #F8FAFC; border: 1px solid transparent; border-radius: 8px; text-decoration: none; color: var(--text-main); transition: all 0.2s ease; font-weight: 600; font-size: 0.9rem; cursor: pointer; }
+        .module-item:hover { background-color: #FFF; border-color: var(--primary); color: var(--primary); }
+        .module-item.active { background-color: var(--tip-bg); border-color: var(--tip-border); color: var(--tip-border); }
+        .module-num { font-size: 0.85rem; background: #E2E8F0; color: var(--text-main); width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: 800; }
+        .module-item.active .module-num { background: var(--tip-border); color: white; }
 
-        /* Header */
-        .header-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 999px;
-            color: white;
-        }
-
-        .badge-difficulty { background-color: #F59E0B; }
-        .badge-time { background-color: var(--text-muted); }
-
-        h1 {
-            font-size: 2.25rem;
-            font-weight: 800;
-            letter-spacing: -0.025em;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-        }
-
-        .subtitle {
-            font-size: 1.125rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-        }
-
-        /* Sections */
-        h2 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #E2E8F0;
-        }
-
-        ul {
-            list-style-type: none;
-            padding-left: 0.5rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        li::before {
-            content: "✔";
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        /* Materi Utama */
-        h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-top: 2rem;
-            margin-bottom: 0.75rem;
-            color: var(--primary);
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
-        /* Code Blocks untuk perintah Linux */
-        .code-command {
-            display: inline-block;
-            background-color: var(--code-bg);
-            color: var(--code-text);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
-            margin: 0.2rem 0;
-        }
-
-        /* Callout Boxes */
-        .callout {
-            padding: 1.25rem 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid;
-            margin: 1.5rem 0;
-            font-size: 0.95rem;
-        }
-
-        .pro-tip {
-            background-color: var(--tip-bg);
-            border-color: var(--tip-border);
-        }
-
-        .pro-tip strong {
-            color: var(--tip-border);
-        }
-
-        .takeaway {
-            background-color: var(--takeaway-bg);
-            border-color: var(--takeaway-border);
-        }
-
-        .takeaway strong {
-            color: var(--takeaway-border);
-        }
-
-        .takeaway ul li::before {
-            content: "🌟";
-            left: -0.25rem;
-        }
-
-        /* Image Placeholder */
-        .img-placeholder {
-            background-color: #F1F5F9;
-            border: 2px dashed #CBD5E1;
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-muted);
-            font-style: italic;
-            margin: 1.5rem 0;
-        }
-
-        /* Button */
-        .btn-next {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: background 0.2s;
-        }
+        /* KONTEN KANAN */
+        .main-content { background: #FFF; border-radius: 16px; padding: 2.5rem 3rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); min-height: 80vh; }
+        .header-meta { display: flex; gap: 1rem; margin-bottom: 1rem; font-size: 0.875rem; font-weight: 600; flex-wrap: wrap; }
+        .badge { padding: 0.25rem 0.75rem; border-radius: 999px; color: white; }
+        .badge-difficulty { background-color: #F59E0B; } .badge-time { background-color: var(--text-muted); }
+        h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.2; } 
+        .subtitle { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2rem; }
+        
+        h2 { font-size: 1.25rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #E2E8F0; }
+        h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--primary); }
+        p { margin-bottom: 1rem; }
+        ul { list-style-type: none; padding-left: 0.5rem; margin-bottom: 1rem; } li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; } li::before { content: "✔"; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
+        
+        .code-command { display: inline-block; background-color: var(--code-bg); color: var(--code-text); padding: 0.2rem 0.5rem; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.85rem; margin: 0.2rem 0; }
+        .callout { padding: 1.25rem 1.5rem; border-radius: 8px; border-left: 4px solid; margin: 1.5rem 0; font-size: 0.95rem; }
+        .pro-tip { background-color: var(--tip-bg); border-color: var(--tip-border); } .pro-tip strong { color: var(--tip-border); }
+        .takeaway { background-color: var(--takeaway-bg); border-color: var(--takeaway-border); } .takeaway strong { color: var(--takeaway-border); } .takeaway ul li::before { content: "🌟"; left: -0.25rem; }
+        .btn-next { display: inline-block; background-color: var(--primary); color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 1rem; border: none; cursor: pointer; font-size: 1rem; } 
         .btn-next:hover { background-color: #0B5A53; }
+        
+        /* Animasi Konten */
+        .module-content { display: none; }
+        .module-content.active-content { display: block; animation: fadeIn 0.4s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* === STYLES UNTUK DAFTAR MODUL === */
-        .module-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 2.5rem;
+        /* Responsif untuk HP */
+        @media (max-width: 768px) {
+            .layout-wrapper { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+            .main-content { padding: 1.5rem; }
         }
-
-        .module-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 1.5rem;
-            background-color: #F8FAFC;
-            border: 1px solid var(--card-border);
-            border-radius: 10px;
-            text-decoration: none;
-            color: var(--text-main);
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .module-item:hover {
-            border-color: var(--primary);
-            background-color: #FFFFFF;
-            box-shadow: var(--hover-shadow);
-            transform: translateY(-2px);
-        }
-
-        .module-item.active {
-            background-color: var(--tip-bg);
-            border-color: var(--tip-border);
-            color: var(--tip-border);
-            cursor: default;
-        }
-
-        .module-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .module-num {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            font-weight: 800;
-        }
-        .module-item.active .module-num {
-            color: var(--tip-border);
-        }
-
-        .module-status {
-            font-size: 0.75rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            background-color: var(--tip-border);
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header-meta">
-        <span class="badge badge-difficulty">🟡 Menengah</span>
-        <span class="badge badge-time">⏱️ 30 Menit</span>
-    </div>
+<div class="layout-wrapper">
     
-    <h1>MATERI ADMINISTRASI SISTEM JARINGAN</h1>
-    <p class="subtitle">Konfigurasi FTP Server pada Debian 10 menggunakan VirtualBox. Pelajari cara menginstal, mengkonfigurasi, dan melakukan uji coba transfer file dengan aman.</p>
+    <!-- SIDEBAR KIRI (DAFTAR MODUL) -->
+    <aside class="sidebar">
+        <h2>📚 Daftar Modul</h2>
+        <div class="module-list">
+            <div class="module-item active" onclick="showModule(1)"><span class="module-num">01</span><span>Konfigurasi FTP Server</span></div>
+            <div class="module-item" onclick="showModule(2)"><span class="module-num">02</span><span>Open SSH Server & Telnet</span></div>
+            <div class="module-item" onclick="showModule(3)"><span class="module-num">03</span><span>Konfigurasi DHCP Server</span></div>
+            <div class="module-item" onclick="showModule(4)"><span class="module-num">04</span><span>Konfigurasi DNS Server</span></div>
+            <div class="module-item" onclick="showModule(5)"><span class="module-num">05</span><span>Konfigurasi Web Server</span></div>
+            <div class="module-item" onclick="showModule(6)"><span class="module-num">06</span><span>Database Server (MariaDB)</span></div>
+        </div>
+    </aside>
 
-    <!-- BAGIAN DAFTAR MODUL (LINK MATERI) -->
-    <h2>📚 Daftar Modul Pembelajaran</h2>
-    <div class="module-list">
-        <!-- Modul 1 (Status Aktif) -->
-        <div class="module-item active">
-            <div class="module-left">
-                <span class="module-num">01</span>
-                <span>Konfigurasi FTP Server</span>
+    <!-- KONTEN KANAN (MATERI) -->
+    <main class="main-content">
+        
+        <!-- KONTEN MODUL 1: FTP -->
+        <div id="module-1" class="module-content active-content">
+            <div class="header-meta">
+                <span class="badge badge-difficulty">🟡 Menengah</span>
+                <span class="badge badge-time">⏱️ 30 Menit</span>
             </div>
-            <span class="module-status">Sedang Dibuka</span>
+            <h1>MATERI ADMINISTRASI SISTEM JARINGAN</h1>
+            <p class="subtitle">Konfigurasi FTP Server pada Debian 10 menggunakan VirtualBox. Pelajari cara menginstal, mengkonfigurasi, dan melakukan uji coba transfer file dengan aman.</p>
+            
+            <h2>🎯 Tujuan Pembelajaran</h2>
+            <ul><li>Melakukan konfigurasi IP statik pada Debian Virtual Machine.</li><li>Menginstal dan mengkonfigurasi layanan FTP (ProFTPD) melalui repository CD/DVD.</li><li>Melakukan uji coba koneksi dan transfer file dari klien (Windows) ke Server (Debian) menggunakan FileZilla.</li></ul>
+            
+            <h2>📋 Persyaratan Prasyarat</h2>
+            <ul><li>Aplikasi VirtualBox / VM sudah terinstal.</li><li>File ISO Debian 10 (CD 1, 2, dan 3).</li><li>Aplikasi klien FTP seperti FileZilla atau WinSCP di komputer host.</li></ul>
+            
+            <h2>📖 Materi Utama: Step-by-Step</h2>
+            <h3>Langkah 1: Konfigurasi Jaringan & IP Server</h3>
+            <p>Pastikan settingan jaringan di VirtualBox menggunakan <strong>Host-only Adapter</strong>. Edit file konfigurasi jaringan untuk membuat IP statik:</p>
+            <p><span class="code-command">nano /etc/network/interfaces</span></p>
+            <p>Masukkan IP statik (Address: 192.168.10.20, Netmask: 255.255.255.0). Simpan <span class="code-command">Ctrl+X</span>, <span class="code-command">Y</span>, Enter. Restart jaringan:</p>
+            <p><span class="code-command">/etc/init.d/networking restart</span><br><span class="code-command">ip a</span></p>
+            <div class="callout pro-tip"><strong>💡 PRO-TIP:</strong><br>Pada komputer Host (Windows), pastikan IP VirtualBox Host-Only Network diset beda di oktet terakhir (misal: 192.168.10.21). Sebelum ping, matikan Firewall Windows dan nyalakan File Sharing. Lakukan uji ping dua arah.</div>
+
+            <h3>Langkah 2: Instalasi ProFTPD via Repository CD</h3>
+            <p>Masukkan CD 1 Debian (Devices => Optical Devices => CD 1). Jalankan perintah berikut:</p>
+            <p><span class="code-command">apt-cdrom add</span><br><span class="code-command">apt-get update</span><br><span class="code-command">apt-get upgrade</span></p>
+            <p>Lakukan hal yang sama untuk CD 2. Setelah selesai, instal paket FTP server:</p>
+            <p><span class="code-command">apt-get install proftpd</span> (Tekan Y lalu Enter)</p>
+
+            <h3>Langkah 3: Konfigurasi File ProFTPD</h3>
+            <p>Buka file konfigurasi: <span class="code-command">nano /etc/proftpd/proftpd.conf</span></p>
+            <ul>
+                <li>Ubah IPv6 dari <code>On</code> menjadi <code>Off</code>.</li>
+                <li>Ubah timeout: <code>6000</code> menjadi <code>600</code>, dan <code>12000</code> menjadi <code>1200</code>.</li>
+                <li>Hilangkan tanda pagar (<code>#</code>) pada baris <code>DefaultRoot</code>.</li>
+                <li>Ubah Port dari <code>21</code> menjadi <code>22</code>.</li>
+                <li>Cari baris <code>#&lt;anonymous ~ftp&gt;</code> dan kata <code>User</code>, hilangkan tanda pagarnya.</li>
+                <li>Cari baris penutup <code>#&lt;/anonymous&gt;</code> terakhir, hilangkan tanda pagarnya.</li>
+            </ul>
+            <p>Simpan dan restart: <span class="code-command">/etc/init.d/proftpd restart</span></p>
+
+            <h3>Langkah 4: Pembuatan User & Uji Coba Klien</h3>
+            <p>Buat user baru: <span class="code-command">adduser joko</span> (masukkan password 1234).</p>
+            <p>Buka <strong>FileZilla</strong> di Windows. Masukkan: Host: 192.168.10.20, Username: joko, Password: 1234, Port: 22. Klik Quickconnect.</p>
+            <div class="callout pro-tip"><strong>💡 PRO-TIP:</strong><br>Coba pindahkan file dari Windows ke Server. Cek di Debian dengan: <span class="code-command">cd /home/joko/</span> lalu <span class="code-command">ls</span>.</div>
+
+            <div class="callout takeaway"><strong>🌟 Ringkasan Pertemuan</strong><ul>
+                <li>IP Host-only: IP server dan host harus 1 subnet.</li>
+                <li>Repository CD: Gunakan apt-cdrom add setiap kali ganti ISO.</li>
+                <li>Keamanan: DefaultRoot mengunci user di folder home masing-masing.</li>
+            </ul></div>
+            <button class="btn-next" onclick="showModule(2)">Lanjut ke Modul 2: Open SSH Server →</button>
         </div>
 
-        <!-- Modul 2 (Link Placeholder) -->
-        <a href="#" class="module-item">
-            <div class="module-left">
-                <span class="module-num">02</span>
-                <span>Konfigurasi Open SSH Server & Telnet</span>
+        <!-- KONTEN MODUL 2: SSH -->
+        <div id="module-2" class="module-content">
+            <div class="header-meta">
+                <span class="badge badge-difficulty">🟡 Menengah</span>
+                <span class="badge badge-time">⏱️ 20 Menit</span>
             </div>
-            <span>→</span>
-        </a>
+            <h1>KONFIGURASI OPEN SSH SERVER & TELNET</h1>
+            <p class="subtitle">Pelajari cara meremote server Debian dari komputer jarak jauh menggunakan protokol SSH (Secure Shell).</p>
+            
+            <h2>🎯 Tujuan Pembelajaran</h2>
+            <ul><li>Memahami konsep remote server menggunakan protokol SSH.</li><li>Menginstal dan mengkonfigurasi paket OpenSSH Server pada Debian.</li><li>Melakukan uji coba koneksi remote dari komputer Windows menggunakan CMD dan aplikasi PuTTY.</li></ul>
+            
+            <h2>📖 Materi Utama: Step-by-Step</h2>
+            <h3>Langkah 1: Cek Koneksi Internet & IP</h3>
+            <p>Pastikan Debian menggunakan <strong>Bridge Adapter</strong> dan mendapat IP DHCP. Cek koneksi internet:</p>
+            <p><span class="code-command">ping 8.8.8.8</span></p>
+            <p>Jika reply, cek IP Debian dan catat (misal: 192.168.52.251): <span class="code-command">ip a</span></p>
+            
+            <h3>Langkah 2: Instalasi OpenSSH Server</h3>
+            <p><span class="code-command">apt install openssh-server</span></p>
+            <div class="callout pro-tip"><strong>💡 PRO-TIP:</strong><br>Jika gagal, masukkan CD 1 Debian ke VirtualBox, jalankan <span class="code-command">apt-cdrom add</span>, lalu coba instal lagi.</div>
 
-        <!-- Modul 3 (Link Placeholder) -->
-        <a href="#" class="module-item">
-            <div class="module-left">
-                <span class="module-num">03</span>
-                <span>Konfigurasi DHCP Server</span>
+            <h3>Langkah 3: Konfigurasi SSH</h3>
+            <p><span class="code-command">nano /etc/ssh/sshd_config</span></p>
+            <ul>
+                <li>Hilangkan tanda pagar (<code>#</code>) pada baris <code>#Port 22</code> menjadi <code>Port 22</code>.</li>
+                <li>Ubah <code>#PermitRootLogin</code> menjadi <code>PermitRootLogin yes</code>.</li>
+            </ul>
+            <p>Simpan & restart: <span class="code-command">/etc/init.d/ssh restart</span> lalu cek status <span class="code-command">systemctl status ssh</span></p>
+
+            <h3>Langkah 4: Uji Coba Remote dari Windows</h3>
+            <p><strong>1. Menggunakan CMD:</strong> <span class="code-command">ssh root@192.168.52.251</span> (masukkan password root).</p>
+            <p><strong>2. Menggunakan PuTTY:</strong> Buka PuTTY, masukkan IP Debian, pilih SSH, klik Open. Login sebagai root.</p>
+            
+            <div class="callout takeaway"><strong>🌟 Ringkasan Pertemuan</strong><ul>
+                <li>Bridge Network memungkinkan VM mendapat IP dari router fisik.</li>
+                <li>Port 22 adalah port standar SSH.</li>
+                <li>PermitRootLogin yes mengizinkan login root dari jauh.</li>
+            </ul></div>
+            <button class="btn-next" onclick="showModule(3)">Lanjut ke Modul 3: DHCP Server →</button>
+        </div>
+
+        <!-- KONTEN MODUL 3: DHCP -->
+        <div id="module-3" class="module-content">
+            <div class="header-meta">
+                <span class="badge badge-difficulty">🟡 Menengah</span>
+                <span class="badge badge-time">⏱️ 25 Menit</span>
             </div>
-            <span>→</span>
-        </a>
+            <h1>KONFIGURASI DHCP SERVER</h1>
+            <p class="subtitle">Pelajari cara memberikan alamat IP secara otomatis kepada komputer klien dalam sebuah jaringan lokal.</p>
+            
+            <h2>🎯 Tujuan Pembelajaran</h2>
+            <ul><li>Konfigurasi IP statik pada interface internal Debian.</li><li>Menginstal dan mengkonfigurasi paket ISC-DHCP-Server.</li><li>Uji coba permintaan IP otomatis dari komputer klien Windows.</li></ul>
+            
+            <h2>📖 Materi Utama: Step-by-Step</h2>
+            <h3>Langkah 1: Konfigurasi IP Internal</h3>
+            <p><span class="code-command">nano /etc/network/interfaces</span></p>
+            <p>Tambahkan IP statik untuk interface internal (misal: enp0s8):</p>
+            <p><span class="code-command">auto enp0s8</span><br><span class="code-command">iface enp0s8 inet static</span><br><span class="code-command">address 200.200.1.1/24</span></p>
+            <p>Simpan & Restart: <span class="code-command">/etc/init.d/networking restart</span></p>
 
-        <!-- Modul 4 (Link Placeholder) -->
-        <a href="#" class="module-item">
-            <div class="module-left">
-                <span class="module-num">04</span>
-                <span>Konfigurasi DNS Server (Bind9)</span>
+            <h3>Langkah 2: Instalasi DHCP Server</h3>
+            <p>Masukkan CD 2 Debian, lalu jalankan:</p>
+            <p><span class="code-command">apt-cdrom add</span><br><span class="code-command">apt-get update</span><br><span class="code-command">apt install isc-dhcp-server</span> (Tekan Y)</p>
+
+            <h3>Langkah 3: Konfigurasi Default Interface</h3>
+            <p><span class="code-command">nano /etc/default/isc-dhcp-server</span></p>
+            <p>Isi nama interface internal di antara tanda kutip: <span class="code-command">INTERFACESv4="enp0s8"</span></p>
+
+            <h3>Langkah 4: Konfigurasi Pool DHCP</h3>
+            <p><span class="code-command">nano /etc/dhcp/dhcpd.conf</span></p>
+            <p>Tambahkan konfigurasi subnet di bagian kedua file:</p>
+            <p><span class="code-command">subnet 200.200.1.0 netmask 255.255.255.0 {</span><br><span class="code-command">range 200.200.1.50 200.200.1.60;</span><br><span class="code-command">option routers 200.200.1.1;</span><br><span class="code-command">}</span></p>
+            <p>Simpan & Restart: <span class="code-command">/etc/init.d/isc-dhcp-server restart</span></p>
+
+            <h3>Langkah 5: Uji Coba di Windows</h3>
+            <div class="callout pro-tip"><strong>💡 PRO-TIP:</strong><br>1. Reset VM Windows (Machine -> Reset).<br>2. Disable lalu Enable adapter LAN di Windows.<br>3. Buka CMD Windows: <span class="code-command">ipconfig /release</span> lalu <span class="code-command">ipconfig /renew</span>. Cek apakah IP sudah berubah menjadi 200.200.1.50.</div>
+            
+            <div class="callout takeaway"><strong>🌟 Ringkasan Pertemuan</strong><ul>
+                <li>DHCP mempermudah administrasi jaringan dengan membagikan IP otomatis.</li>
+                <li>Range IP menentukan batas IP yang akan dibagikan ke klien.</li>
+            </ul></div>
+            <button class="btn-next" onclick="showModule(4)">Lanjut ke Modul 4: DNS Server →</button>
+        </div>
+
+        <!-- KONTEN MODUL 4: DNS -->
+        <div id="module-4" class="module-content">
+            <div class="header-meta">
+                <span class="badge badge-difficulty">🔴 Mahir</span>
+                <span class="badge badge-time">⏱️ 40 Menit</span>
             </div>
-            <span>→</span>
-        </a>
+            <h1>KONFIGURASI DNS SERVER (BIND9)</h1>
+            <p class="subtitle">Pelajari cara menterjemahkan nama domain (seperti pear.net) menjadi alamat IP agar mudah diingat oleh manusia.</p>
+            
+            <h2>🎯 Tujuan Pembelajaran</h2>
+            <ul><li>Menginstal dan mengkonfigurasi Bind9 sebagai DNS Server lokal.</li><li>Membuat Forward dan Reverse Zone untuk domain lokal (pear.net).</li><li>Melakukan pengujian DNS melalui perintah NSLookup dan Web Browser.</li></ul>
+            
+            <h2>📖 Materi Utama: Step-by-Step</h2>
+            <h3>Langkah 1: Setting IP & Instalasi Bind9</h3>
+            <p>Setting IP Debian menjadi 20.20.20.1 (Host-only). Lalu install bind9:</p>
+            <p><span class="code-command">apt install bind9 dnsutils</span> <em>(Gunakan CD 1/2 jika diminta)</em></p>
 
-        <!-- Modul 5 (Link Placeholder) -->
-        <a href="#" class="module-item">
-            <div class="module-left">
-                <span class="module-num">05</span>
-                <span>Konfigurasi Web Server (Apache2)</span>
+            <h3>Langkah 2: Copy File Zone</h3>
+            <p>Masuk ke direktori bind: <span class="code-command">cd /etc/bind/</span></p>
+            <p>Copy file forward dan reverse:</p>
+            <p><span class="code-command">cp db.local db.pear</span><br><span class="code-command">cp db.127 db.20</span> <em>(20 diambil dari oktet pertama IP)</em></p>
+
+            <h3>Langkah 3 & 4: Konfigurasi Forward & Reverse Zone</h3>
+            <p>Edit Forward: <span class="code-command">nano db.pear</span> (Ubah "localhost" menjadi "pear.net." dan masukkan IP 20.20.20.1 pada record A).</p>
+            <p>Edit Reverse: <span class="code-command">nano db.20</span> (Ubah "localhost" menjadi "pear.net." dan masukkan angka akhir IP (1) pada record NS dan PTR).</p>
+
+            <h3>Langkah 5: Deklarasikan Zone di Named.conf</h3>
+            <p><span class="code-command">nano named.conf.default-zones</span></p>
+            <p>Tambahkan di bagian bawah:</p>
+            <p><span class="code-command">zone "pear.net" { type master; file "/etc/bind/db.pear"; };</span><br><span class="code-command">zone "20.20.20.in-addr.arpa" { type master; file "/etc/bind/db.20"; };</span></p>
+
+            <h3>Langkah 6: Setting Resolv.conf & Restart</h3>
+            <p><span class="code-command">nano /etc/resolv.conf</span> (Isi: nameserver 20.20.20.1, search pear.net)</p>
+            <p>Restart Bind9: <span class="code-command">/etc/init.d/bind9 restart</span></p>
+
+            <h3>Langkah 7: Uji Coba DNS</h3>
+            <p>Di Debian ketik: <span class="code-command">nslookup pear.net</span></p>
+            <p>Di Windows: Seting IP adapter agar menggunakan DNS Server 20.20.20.1. Buka CMD ketik <span class="code-command">nslookup pear.net</span>.</p>
+            
+            <div class="callout takeaway"><strong>🌟 Ringkasan Pertemuan</strong><ul>
+                <li>Forward Zone menterjemahkan Nama ke IP, Reverse Zone sebaliknya.</li>
+                <li>Resolv.conf mengatur server mana yang ditanyakan saat Debian butuh DNS.</li>
+            </ul></div>
+            <button class="btn-next" onclick="showModule(5)">Lanjut ke Modul 5: Web Server →</button>
+        </div>
+
+        <!-- KONTEN MODUL 5: WEB -->
+        <div id="module-5" class="module-content">
+            <div class="header-meta">
+                <span class="badge badge-difficulty">🟡 Menengah</span>
+                <span class="badge badge-time">⏱️ 20 Menit</span>
             </div>
-            <span>→</span>
-        </a>
+            <h1>KONFIGURASI WEB SERVER (APACHE2)</h1>
+            <p class="subtitle">Pelajari cara menyajikan halaman web HTML sederhana yang dapat diakses melalui jaringan lokal.</p>
+            
+            <h2>🎯 Tujuan Pembelajaran</h2>
+            <ul><li>Menginstal web server Apache2 pada Debian.</li><li>Mengkonfigurasi Virtual Host untuk domain lokal.</li><li>Membuat halaman web (index.html) sederhana dan mengujinya di browser klien.</li></ul>
+            
+            <h2>📖 Materi Utama: Step-by-Step</h2>
+            <h3>Langkah 1: Instalasi Apache2</h3>
+            <p>Setting IP Debian 10.10.10.1. Lalu install:</p>
+            <p><span class="code-command">apt install apache2</span> (Tekan Y, masukkan CD 1 jika diminta).</p>
+            <p>Cek status: <span class="code-command">dpkg -l apache2</span></p>
 
-        <!-- Modul 6 (Link Placeholder) -->
-        <a href="#" class="module-item">
-            <div class="module-left">
-                <span class="module-num">06</span>
-                <span>Konfigurasi Database Server (MariaDB)</span>
+            <h3>Langkah 2: Konfigurasi Virtual Host</h3>
+            <p>Masuk direktori: <span class="code-command">cd /etc/apache2/sites-available</span></p>
+            <p>Salin config default: <span class="code-command">cp 000-default.conf pear.conf</span></p>
+            <p>Edit file: <span class="code-command">nano pear.conf</span> (Ubah ServerAdmin menjadi email Anda). Simpan.</p>
+
+            <h3>Langkah 3: Aktifkan Site Baru</h3>
+            <p>Nonaktifkan default: <span class="code-command">a2dissite 000-default.conf</span></p>
+            <p>Aktifkan pear.conf: <span class="code-command">a2ensite pear.conf</span></p>
+
+            <h3>Langkah 4: Edit Halaman Web (index.html)</h3>
+            <p>Masuk direktori web: <span class="code-command">cd /var/www/html/</span></p>
+            <p>Edit file: <span class="code-command">nano index.html</span></p>
+            <p>Hapus semua teks komentarnya (blok dengan Ctrl+Shift+Panah Bawah, lalu Ctrl+K hapus). Ketik:</p>
+            <p><span class="code-command">&lt;html&gt;<br>WELCOME TO MY CHANNEL<br>&lt;br/&gt;<br>Dont forget to follow and subscribe<br>&lt;html/&gt;</span></p>
+            <p>Simpan, lalu restart Apache: <span class="code-command">/etc/init.d/apache2 restart</span></p>
+
+            <h3>Langkah 5: Uji Coba Web</h3>
+            <p>Buka Browser (Chrome/Mozilla) di Windows. Ketik di URL: <span class="code-command">10.10.10.1</span> dan tekan Enter.</p>
+            
+            <div class="callout takeaway"><strong>🌟 Ringkasan Pertemuan</strong><ul>
+                <li>Apache2 adalah web server paling populer untuk Linux.</li>
+                <li>Virtual Host (a2ensite/a2dissite) digunakan untuk mengatur banyak website dalam satu server.</li>
+            </ul></div>
+            <button class="btn-next" onclick="showModule(6)">Lanjut ke Modul 6: Database →</button>
+        </div>
+
+        <!-- KONTEN MODUL 6: DB -->
+        <div id="module-6" class="module-content">
+            <div class="header-meta">
+                <span class="badge badge-difficulty">🟡 Menengah</span>
+                <span class="badge badge-time">⏱️ 15 Menit</span>
             </div>
-            <span>→</span>
-        </a>
-    </div>
+            <h1>KONFIGURASI DATABASE SERVER (MariaDB)</h1>
+            <p class="subtitle">Pelajari dasar-dasar manajemen database relasional menggunakan SQL (Structured Query Language).</p>
+            
+            <h2>🎯 Tujuan Pembelajaran</h2>
+            <ul><li>Menginstal dan mengamankan database server MariaDB.</li><li>Memahami perintah dasar SQL untuk membuat database dan tabel.</li><li>Melakukan operasi CRUD (Create, Read) sederhana.</li></ul>
+            
+            <h2>📖 Materi Utama: Step-by-Step</h2>
+            <h3>Langkah 1: Instalasi & Sekuriti MariaDB</h3>
+            <p>Install paket: <span class="code-command">apt install mariadb-server</span> (Gunakan CD 1/2 jika diminta).</p>
+            <p>Cek status: <span class="code-command">systemctl status mariadb.service</span></p>
+            <p>Jalankan sekuriti setup: <span class="code-command">mysql_secure_installation</span> (Tekan Enter, ketik Y, buat password root, lalu tekan Y sampai selesai).</p>
 
-    <!-- AWAL MATERI MODUL 1: FTP SERVER -->
-    <h2>🎯 Tujuan Pembelajaran</h2>
-    <ul>
-        <li>Melakukan konfigurasi IP statik pada Debian Virtual Machine.</li>
-        <li>Menginstal dan mengkonfigurasi layanan FTP (ProFTPD) melalui repository CD/DVD.</li>
-        <li>Melakukan uji coba koneksi dan transfer file dari klien (Windows) ke Server (Debian) menggunakan FileZilla.</li>
-    </ul>
+            <h3>Langkah 2: Masuk ke Database</h3>
+            <p>Login ke MariaDB: <span class="code-command">mysql -u root -p</span> (Masukkan password yang dibuat tadi).</p>
+            <p>Lihat database default: <span class="code-command">show databases;</span></p>
 
-    <h2>📋 Persyaratan Prasyarat</h2>
-    <ul>
-        <li>Aplikasi VirtualBox / VM sudah terinstal.</li>
-        <li>File ISO Debian 10 (CD 1, 2, dan 3).</li>
-        <li>Aplikasi klien FTP seperti FileZilla atau WinSCP di komputer host.</li>
-    </ul>
+            <h3>Langkah 3: Membuat Database & Table</h3>
+            <p>Buat database baru: <span class="code-command">create database smk_bisa;</span></p>
+            <p>Gunakan database tersebut: <span class="code-command">use smk_bisa;</span></p>
+            <p>Buat tabel siswa:</p>
+            <p><span class="code-command">create table siswa(id int auto_increment, nama_siswa varchar(100), primary key(id)) engine=innodb;</span></p>
+            <p>Lihat tabel: <span class="code-command">show tables;</span></p>
 
-    <h2>📖 Materi Utama: Step-by-Step</h2>
+            <h3>Langkah 4: Memasukkan Data (Insert)</h3>
+            <p><span class="code-command">insert into siswa (nama_siswa) values("jaka");</span></p>
+            <p><span class="code-command">insert into siswa (nama_siswa) values("bambang");</span></p>
 
-    <h3>Langkah 1: Konfigurasi Jaringan & IP Server</h3>
-    <p>Pastikan settingan jaringan di VirtualBox menggunakan <strong>Host-only Adapter</strong>. Nyalakan Debian dan login. Kemudian, edit file konfigurasi jaringan untuk membuat IP statik:</p>
-    <p><span class="code-command">nano /etc/network/interfaces</span></p>
-    <p>Masukkan IP statik berikut (Address: 192.168.10.20, Netmask: 255.255.255.0). Simpan dengan <span class="code-command">Ctrl+X</span> lalu <span class="code-command">Y</span> dan Enter. Restart jaringan dan cek IP:</p>
-    <p>
-        <span class="code-command">/etc/init.d/networking restart</span><br>
-        <span class="code-command">ip a</span>
-    </p>
-    
-    <div class="callout pro-tip">
-        <strong>💡 PRO-TIP:</strong><br>
-        Pada komputer Host (Windows), pastikan IP VirtualBox Host-Only Network diset beda di oktet terakhir (misal: 192.168.10.21). Sebelum melakukan ping, matikan (<em>off</em>) Firewall Windows dan nyalakan (<em>on</em>) File Sharing, kecuali password sharing dimatikan (<em>off</em>). Lakukan uji ping dua arah antara Windows dan Debian.
-    </div>
+            <h3>Langkah 5: Melihat Data (Select)</h3>
+            <p>Tampilkan seluruh isi tabel siswa: <span class="code-command">select * from siswa;</span></p>
 
-    <h3>Langkah 2: Instalasi ProFTPD via Repository CD</h3>
-    <p>Karena menggunakan repository offline, kita harus memasukkan ISO Debian satu per satu. Mulai dengan memasukkan CD 1 Debian (Devices => Optical Devices => CD 1). Jalankan perintah berikut secara berurutan:</p>
-    <p>
-        <span class="code-command">apt-cdrom add</span><br>
-        <span class="code-command">apt-get update</span><br>
-        <span class="code-command">apt-get upgrade</span>
-    </p>
-    <p>Lakukan hal yang sama untuk CD 2 (masukkan CD, lalu jalankan ketiga perintah di atas). Setelah selesai, instal paket FTP server (ProFTPD):</p>
-    <p>
-        <span class="code-command">apt-get install proftpd</span> (Tekan <strong>Y</strong> lalu Enter)
-    </p>
+            <div class="callout pro-tip"><strong>💡 PRO-TIP:</strong><br>Jangan lupa untuk selalu memberi tanda titik koma (<code>;</code>) di akhir setiap perintah SQL. Jika lupa, perintah tidak akan dieksekusi.</div>
+            
+            <div class="callout takeaway"><strong>🌟 Ringkasan Pertemuan</strong><ul>
+                <li>mysql_secure_installation sangat penting untuk mengatur password root dan menutup celah keamanan.</li>
+                <li>Auto Increment secara otomatis menambah nomor ID setiap ada data baru dimasukkan.</li>
+            </ul></div>
+            <button class="btn-next" onclick="showModule(1)">Kembali ke Modul 1 →</button>
+        </div>
 
-    <div class="img-placeholder">
-        [Gambar Placeholder: Tampilan pemilihan mode instalasi ProFTPD (pilih standalone)]
-    </div>
-
-    <h3>Langkah 3: Konfigurasi File ProFTPD</h3>
-    <p>Buka file konfigurasi ProFTPD dengan perintah:</p>
-    <p><span class="code-command">nano /etc/proftpd/proftpd.conf</span></p>
-    <p>Lakukan perubahan baris berikut di dalam file tersebut:</p>
-    <ul>
-        <li>Ubah IPv6 dari <code>On</code> menjadi <code>Off</code>.</li>
-        <li>Ubah waktu timeout: <code>6000</code> menjadi <code>600</code>, dan <code>12000</code> menjadi <code>1200</code>.</li>
-        <li>Hilangkan tanda pagar (<code>#</code>) pada baris <code>DefaultRoot</code>.</li>
-        <li>Ubah Port dari <code>21</code> menjadi <code>22</code>.</li>
-        <li>Cari baris <code>#&lt;anonymous ~ftp&gt;</code> dan kata <code>User</code>, hilangkan tanda pagar (<code>#</code>) di awal baris tersebut.</li>
-        <li>Cari baris penutup <code>#&lt;/anonymous&gt;</code> terakhir, hilangkan tanda pagarnya.</li>
-    </ul>
-    <p>Simpan file (<span class="code-command">Ctrl+X</span>, <span class="code-command">Y</span>) dan restart layanan ProFTPD:</p>
-    <p><span class="code-command">/etc/init.d/proftpd restart</span></p>
-
-    <div class="img-placeholder">
-        [Gambar Placeholder: Perbandingan isi file proftpd.conf Sebelum dan Sesudah Dirubah]
-    </div>
-
-    <h3>Langkah 4: Pembuatan User & Uji Coba Klien</h3>
-    <p>Buat user baru untuk login ke FTP server. Misalnya kita buat user bernama "joko":</p>
-    <p><span class="code-command">adduser joko</span></p>
-    <p>Masukkan password (misal: 1234) dan masukkan kembali passwordnya. Tekan enter terus sampai muncul pilihan Y/N, pilih <strong>Y</strong> dan Enter.</p>
-    
-    <p>Buka aplikasi <strong>FileZilla</strong> di komputer Windows Anda. Masukkan data koneksi berikut:</p>
-    <ul>
-        <li><strong>Host:</strong> 192.168.10.20</li>
-        <li><strong>Username:</strong> joko</li>
-        <li><strong>Password:</strong> 1234</li>
-        <li><strong>Port:</strong> 22</li>
-    </ul>
-    <p>Klik <strong>Quickconnect</strong>. Jika muncul popup, klik <strong>OK</strong>. Jika berhasil, Anda akan melihat direktori server di sebelah kanan.</p>
-
-    <div class="callout pro-tip">
-        <strong>💡 PRO-TIP:</strong><br>
-        Untuk memastikan file transfer berfungsi, coba pindahkan file dari komputer Windows (panel kiri FileZilla) ke direktori server Debian (panel kanan). Anda bisa mengeceknya di Debian melalui terminal dengan perintah: <span class="code-command">cd /home/joko/</span> lalu ketik <span class="code-command">ls</span> untuk melihat isi direktori.
-    </div>
-
-    <h2>📦 Poin Kunci / Takeaway</h2>
-    <div class="callout takeaway">
-        <strong>🌟 Ringkasan Pertemuan</strong>
-        <ul>
-            <li><strong>IP Host-only:</strong> IP server dan IP komputer host harus berada di subnet yang sama agar bisa saling terhubung.</li>
-            <li><strong>Repository CD:</strong> Gunakan <code>apt-cdrom add</code> setiap kali mengganti ISO Debian untuk memperbarui database paket offline.</li>
-            <li><strong>Keamanan Dasar:</strong> Penggunaan <code>DefaultRoot</code> mengunci user FTP hanya ke folder home masing-masing, mencegah akses ke root sistem.</li>
-            <li><strong>Pengujian:</strong> Selalu lakukan uji coba transfer file untuk memastikan layanan FTP berjalan dua arah.</li>
-        </ul>
-    </div>
-
-    <h2>🚀 Rangkuman & Langkah Selanjutnya</h2>
-    <p>Selamat! Anda telah berhasil mengkonfigurasi FTP Server menggunakan Debian 10 dan VirtualBox. Anda kini memahami cara seting IP statik, instalasi paket offline, konfigurasi ProFTPD, dan manajemen user FTP.</p>
-    
-    <a href="#" class="btn-next">Lanjut ke Modul 2: Open SSH Server →</a>
+    </main>
 </div>
+
+<!-- SCRIPT UNTUK MEMBUAT TOMBOL DI-KLIK -->
+<script>
+    function showModule(moduleNumber) {
+        // Sembunyikan semua konten modul
+        let contents = document.querySelectorAll('.module-content');
+        contents.forEach(content => content.classList.remove('active-content'));
+
+        // Hapus status aktif di semua daftar modul sidebar
+        let navs = document.querySelectorAll('.module-item');
+        navs.forEach(nav => nav.classList.remove('active'));
+
+        // Tampilkan konten modul yang dipilih
+        document.getElementById('module-' + moduleNumber).classList.add('active-content');
+
+        // Beri status aktif di daftar modul sidebar yang dipilih
+        let activeNav = document.querySelectorAll('.module-item')[moduleNumber - 1];
+        if(activeNav) activeNav.classList.add('active');
+
+        // Scroll halaman ke atas
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
 
 </body>
 </html>
