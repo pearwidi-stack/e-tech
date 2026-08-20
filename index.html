@@ -10,24 +10,10 @@
         body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; padding: 2rem 1rem; }
         
         /* Layout Grid 2 Kolom */
-        .layout-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 300px 1fr; /* Kiri 300px, Kanan sisa nya */
-            gap: 2rem;
-        }
+        .layout-wrapper { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 300px 1fr; gap: 2rem; }
 
         /* SIDEBAR KIRI */
-        .sidebar {
-            background: #FFF;
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
-            height: fit-content;
-            position: sticky; /* Membuat sidebar tetap saat di-scroll */
-            top: 2rem;
-        }
+        .sidebar { background: #FFF; border-radius: 16px; padding: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); height: fit-content; position: sticky; top: 2rem; }
         .sidebar h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 1rem; border-bottom: 2px solid #E2E8F0; padding-bottom: 0.5rem; }
         .module-list { display: flex; flex-direction: column; gap: 0.5rem; }
         .module-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background-color: #F8FAFC; border: 1px solid transparent; border-radius: 8px; text-decoration: none; color: var(--text-main); transition: all 0.2s ease; font-weight: 600; font-size: 0.9rem; cursor: pointer; }
@@ -45,7 +31,7 @@
         .subtitle { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2rem; }
         
         h2 { font-size: 1.25rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #E2E8F0; }
-        h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--primary); }
+        h3 { font-size: 1.1rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--primary); }
         p { margin-bottom: 1rem; }
         ul { list-style-type: none; padding-left: 0.5rem; margin-bottom: 1rem; } li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; } li::before { content: "✔"; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
         
@@ -96,8 +82,11 @@
                 <span class="badge badge-time">⏱️ 30 Menit</span>
             </div>
             <h1>MATERI ADMINISTRASI SISTEM JARINGAN</h1>
-            <p class="subtitle">Konfigurasi FTP Server pada Debian 10 menggunakan VirtualBox. Pelajari cara menginstal, mengkonfigurasi, dan melakukan uji coba transfer file dengan aman.</p>
+            <p class="subtitle">Konfigurasi FTP Server pada Debian 10 menggunakan VirtualBox.</p>
             
+            <h2>📖 Pengertian</h2>
+            <p>Mata pelajaran Administrasi Sistem Jaringan dirancang untuk membekali siswa dengan kemampuan praktik dalam membangun, mengelola, dan mengamankan sebuah jaringan komputer berbasis sistem operasi Linux (Debian). Pada modul pertama ini, siswa akan belajar cara membuat server yang khusus digunakan untuk melakukan transfer (pengiriman dan penerimaan) file antar komputer dalam jaringan. Materi ini sangat penting sebagai dasar untuk berbagi data, mengunggah file website, atau berbagi dokumen secara terpusat menggunakan aplikasi seperti FileZilla.</p>
+
             <h2>🎯 Tujuan Pembelajaran</h2>
             <ul><li>Melakukan konfigurasi IP statik pada Debian Virtual Machine.</li><li>Menginstal dan mengkonfigurasi layanan FTP (ProFTPD) melalui repository CD/DVD.</li><li>Melakukan uji coba koneksi dan transfer file dari klien (Windows) ke Server (Debian) menggunakan FileZilla.</li></ul>
             
@@ -150,8 +139,11 @@
                 <span class="badge badge-time">⏱️ 20 Menit</span>
             </div>
             <h1>KONFIGURASI OPEN SSH SERVER & TELNET</h1>
-            <p class="subtitle">Pelajari cara meremote server Debian dari komputer jarak jauh menggunakan protokol SSH (Secure Shell).</p>
+            <p class="subtitle">Pelajari cara meremote server Debian dari komputer jarak jauh.</p>
             
+            <h2>📖 Pengertian</h2>
+            <p>Modul ini membahas tentang cara meremote (mengendalikan) server Debian dari jarak jauh melalui komputer lain (misal: Windows). Siswa akan memahami perbedaan antara SSH yang aman (terenkripsi) dengan Telnet. Ini adalah keterampilan wajib bagi seorang administrator jaringan, karena memungkinkan mereka memperbaiki atau mengatur server tanpa harus berada tepat di depan layar server tersebut.</p>
+
             <h2>🎯 Tujuan Pembelajaran</h2>
             <ul><li>Memahami konsep remote server menggunakan protokol SSH.</li><li>Menginstal dan mengkonfigurasi paket OpenSSH Server pada Debian.</li><li>Melakukan uji coba koneksi remote dari komputer Windows menggunakan CMD dan aplikasi PuTTY.</li></ul>
             
@@ -192,8 +184,11 @@
                 <span class="badge badge-time">⏱️ 25 Menit</span>
             </div>
             <h1>KONFIGURASI DHCP SERVER</h1>
-            <p class="subtitle">Pelajari cara memberikan alamat IP secara otomatis kepada komputer klien dalam sebuah jaringan lokal.</p>
+            <p class="subtitle">Pelajari cara memberikan alamat IP secara otomatis kepada komputer klien.</p>
             
+            <h2>📖 Pengertian</h2>
+            <p>Dalam jaringan besar, menyeting alamat IP (IP Address) satu per satu pada setiap komputer klien sangatlah tidak efisien. Modul ini mengajarkan bagaimana server Debian dapat memberikan IP secara otomatis kepada komputer klien yang terhubung ke jaringan, sehingga mempermudah manajemen jaringan dan mencegah terjadinya konflik IP.</p>
+
             <h2>🎯 Tujuan Pembelajaran</h2>
             <ul><li>Konfigurasi IP statik pada interface internal Debian.</li><li>Menginstal dan mengkonfigurasi paket ISC-DHCP-Server.</li><li>Uji coba permintaan IP otomatis dari komputer klien Windows.</li></ul>
             
@@ -235,8 +230,11 @@
                 <span class="badge badge-time">⏱️ 40 Menit</span>
             </div>
             <h1>KONFIGURASI DNS SERVER (BIND9)</h1>
-            <p class="subtitle">Pelajari cara menterjemahkan nama domain (seperti pear.net) menjadi alamat IP agar mudah diingat oleh manusia.</p>
+            <p class="subtitle">Pelajari cara menterjemahkan nama domain menjadi alamat IP.</p>
             
+            <h2>📖 Pengertian</h2>
+            <p>Manusia mudah mengingat nama (seperti google.com), namun komputer hanya mengenal angka (IP Address). Modul ini mengajarkan cara kerja DNS, yaitu layanan yang berfungsi menterjemahkan nama domain (seperti pear.net) menjadi alamat IP. Modul ini sedikit lebih kompleks karena melibatkan logika Forward dan Reverse Zone, namun sangat krusial dalam pembuatan jaringan internet lokal.</p>
+
             <h2>🎯 Tujuan Pembelajaran</h2>
             <ul><li>Menginstal dan mengkonfigurasi Bind9 sebagai DNS Server lokal.</li><li>Membuat Forward dan Reverse Zone untuk domain lokal (pear.net).</li><li>Melakukan pengujian DNS melalui perintah NSLookup dan Web Browser.</li></ul>
             
@@ -281,8 +279,11 @@
                 <span class="badge badge-time">⏱️ 20 Menit</span>
             </div>
             <h1>KONFIGURASI WEB SERVER (APACHE2)</h1>
-            <p class="subtitle">Pelajari cara menyajikan halaman web HTML sederhana yang dapat diakses melalui jaringan lokal.</p>
+            <p class="subtitle">Pelajari cara menyajikan halaman web HTML sederhana di jaringan lokal.</p>
             
+            <h2>📖 Pengertian</h2>
+            <p>Setelah memiliki domain di modul DNS, server butuh "isi" untuk ditampilkan. Modul ini mengajarkan cara menginstal dan mengkonfigurasi Apache2, yaitu perangkat lunak server yang berfungsi menyajikan halaman web (HTML) ke browser pengunjung. Siswa akan belajar cara mengatur Virtual Host untuk menampung beberapa website dalam satu server.</p>
+
             <h2>🎯 Tujuan Pembelajaran</h2>
             <ul><li>Menginstal web server Apache2 pada Debian.</li><li>Mengkonfigurasi Virtual Host untuk domain lokal.</li><li>Membuat halaman web (index.html) sederhana dan mengujinya di browser klien.</li></ul>
             
@@ -325,8 +326,11 @@
                 <span class="badge badge-time">⏱️ 15 Menit</span>
             </div>
             <h1>KONFIGURASI DATABASE SERVER (MariaDB)</h1>
-            <p class="subtitle">Pelajari dasar-dasar manajemen database relasional menggunakan SQL (Structured Query Language).</p>
+            <p class="subtitle">Pelajari dasar-dasar manajemen database relasional menggunakan SQL.</p>
             
+            <h2>📖 Pengertian</h2>
+            <p>Sebuah website atau aplikasi yang dinamis pasti membutuhkan tempat penyimpanan data terstruktur. Di modul terakhir ini, siswa diajarkan cara menginstal server database MariaDB, mengamankan akses root (password), serta melakukan perintah dasar SQL untuk membuat database, tabel, dan memasukkan data.</p>
+
             <h2>🎯 Tujuan Pembelajaran</h2>
             <ul><li>Menginstal dan mengamankan database server MariaDB.</li><li>Memahami perintah dasar SQL untuk membuat database dan tabel.</li><li>Melakukan operasi CRUD (Create, Read) sederhana.</li></ul>
             
