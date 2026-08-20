@@ -1,1 +1,238 @@
-hello
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengenalan Prompt Engineering</title>
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --bg-color: #F8FAFC;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --tip-bg: #ECFDF5;
+            --tip-border: #10B981;
+            --takeaway-bg: #EFF6FF;
+            --takeaway-border: #3B82F6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
+
+        /* Header */
+        .header-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            color: white;
+        }
+
+        .badge-difficulty { background-color: #10B981; }
+        .badge-time { background-color: var(--text-muted); }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Sections */
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #E2E8F0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Materi Utama */
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Callout Boxes */
+        .callout {
+            padding: 1.25rem 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .pro-tip {
+            background-color: var(--tip-bg);
+            border-color: var(--tip-border);
+        }
+
+        .pro-tip strong {
+            color: var(--tip-border);
+        }
+
+        .takeaway {
+            background-color: var(--takeaway-bg);
+            border-color: var(--takeaway-border);
+        }
+
+        .takeaway strong {
+            color: var(--takeaway-border);
+        }
+
+        .takeaway ul li::before {
+            content: "🌟";
+            left: -0.25rem;
+        }
+
+        /* Image Placeholder */
+        .img-placeholder {
+            background-color: #F1F5F9;
+            border: 2px dashed #CBD5E1;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-style: italic;
+            margin: 1.5rem 0;
+        }
+
+        /* Button */
+        .btn-next {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background 0.2s;
+        }
+        .btn-next:hover { background-color: #4338CA; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-meta">
+        <span class="badge badge-difficulty">🟢 Pemula</span>
+        <span class="badge badge-time">⏱️ 15 Menit</span>
+    </div>
+    
+    <h1>Pengenalan Prompt Engineering untuk Pemula</h1>
+    <p class="subtitle">Pelajari dasar-dasar komunikasi dengan Artificial Intelligence (AI) untuk menghasilkan respons yang akurat, relevan, dan berkualitas tinggi.</p>
+
+    <h2>🎯 Tujuan Pembelajaran</h2>
+    <ul>
+        <li>Memahami konsep dasar dan pentingnya <em>Prompt Engineering</em>.</li>
+        <li>Merumuskan instruksi (prompt) yang terstruktur menggunakan kerangka dasar.</li>
+        <li>Mengiterasi dan menyempurnakan hasil AI agar sesuai dengan kebutuhan spesifik Anda.</li>
+    </ul>
+
+    <h2>📋 Persyaratan Prasyarat</h2>
+    <ul>
+        <li>Akun aktif pada salah satu platform AI (misal: ChatGPT, Claude, atau Gemini).</li>
+        <li>Koneksi internet yang stabil.</li>
+    </ul>
+
+    <h2>📖 Materi Utama: Step-by-Step</h2>
+
+    <h3>Langkah 1: Memahami Anatomi Prompt yang Baik</h3>
+    <p>AI tidak bisa membaca pikiran; ia hanya memahami teks yang diberikan. Prompt yang buruk menghasilkan jawaban yang generik, sedangkan prompt yang baik menghasilkan jawaban yang tajam dan spesifik.</p>
+    
+    <div class="callout pro-tip">
+        <strong>💡 PRO-TIP:</strong><br>
+        Bayangkan Anda sedang memberikan brief pekerjaan kepada asisten magang. Semakin detail dan jelas instruksi Anda, semakin baik hasil kerja mereka.
+    </div>
+
+    <div class="img-placeholder">
+        [Gambar Placeholder: Infografis perbandingan visual antara Prompt Buruk vs Prompt Baik]
+    </div>
+
+    <h3>Langkah 2: Menerapkan Formula Sihir (RTCF)</h3>
+    <p>Untuk memudahkan Anda dalam menyusun prompt, gunakan formula <strong>RTCF (Role, Task, Context, Format)</strong>. Formula ini memastikan tidak ada informasi penting yang terlewat.</p>
+    
+    <div class="img-placeholder">
+        [Gambar Placeholder: Diagram lingkaran (Circle Diagram) yang memecah formula RTCF]
+    </div>
+
+    <h2>📦 Poin Kunci / Takeaway</h2>
+    <div class="callout takeaway">
+        <strong>🌟 Ringkasan Pertemuan</strong>
+        <ul>
+            <li><strong>Prompt = Instruksi:</strong> Berikan peran, tugas, konteks, dan format yang jelas.</li>
+            <li><strong>RTCF Formula:</strong> Gunakan kerangka ini agar tidak ada instruksi yang terlewat.</li>
+            <li><strong>Iterasi adalah Kunci:</strong> Jangan menyerah pada hasil pertama. Koreksi dan arahkan AI hingga mendapatkan hasil ideal.</li>
+        </ul>
+    </div>
+
+    <h2>🚀 Rangkuman & Langkah Selanjutnya</h2>
+    <p>Selamat! Anda kini telah menguasai dasar-dasar Prompt Engineering. Dengan menggunakan formula RTCF dan kebiasaan melakukan iterasi, Anda dapat mengubah AI dari sekadar alat menjadi asisten pribadi yang sangat cerdas dan akurat.</p>
+    
+    <a href="#" class="btn-next">Lanjut ke Materi Berikutnya →</a>
+</div>
+
+</body>
+</html>
