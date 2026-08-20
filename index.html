@@ -280,9 +280,9 @@
             
             <h2>📖 Materi Utama: Step-by-Step</h2>
             <h3>Langkah 1: Konfigurasi IP Internal</h3>
-            <p><span class="code-command">nano /etc/network/interfaces</span></p>
             <p>Network virtual adapter 1 Broadcast (untuk linux debian) </p>
             <p>Network virtual adapter 2 Internal (untuk os WIndows) </p>
+            <p><span class="code-command">nano /etc/network/interfaces</span></p>
             <p>Tambahkan IP statik untuk interface internal (misal: enp0s8):</p>
             <p><span class="code-command">auto enp0s8</span><br><span class="code-command">iface enp0s8 inet static</span><br><span class="code-command">address 200.200.1.1/24</span></p>
             <p>Simpan & Restart: <span class="code-command">/etc/init.d/networking restart</span></p>
