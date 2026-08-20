@@ -281,6 +281,8 @@
             <h2>📖 Materi Utama: Step-by-Step</h2>
             <h3>Langkah 1: Konfigurasi IP Internal</h3>
             <p><span class="code-command">nano /etc/network/interfaces</span></p>
+            <p>Network virtual adapter 1 Broadcast</p>
+            <p>Network virtual adapter 2 Internal </p>
             <p>Tambahkan IP statik untuk interface internal (misal: enp0s8):</p>
             <p><span class="code-command">auto enp0s8</span><br><span class="code-command">iface enp0s8 inet static</span><br><span class="code-command">address 200.200.1.1/24</span></p>
             <p>Simpan & Restart: <span class="code-command">/etc/init.d/networking restart</span></p>
@@ -295,7 +297,11 @@
 
             <h3>Langkah 4: Konfigurasi Pool DHCP</h3>
             <p><span class="code-command">nano /etc/dhcp/dhcpd.conf</span></p>
-            <p>Tambahkan konfigurasi subnet di bagian kedua file:</p>
+            <p><span class="code-command"> option domain-name "pear.net"; </span>
+            <br><span class="code-command">option domain-name-server 200.200.1.1;</span>
+            <br><span class="code-command">default-lease-time 600;</span>
+            <br><span class="code-command">max-lease-time 7200;</span>
+            <p>Tambahkan dan edit konfigurasi subnet di bagian kedua file:</p>
             <p><span class="code-command">subnet 200.200.1.0 netmask 255.255.255.0 {</span><br><span class="code-command">range 200.200.1.50 200.200.1.60;</span><br><span class="code-command">option routers 200.200.1.1;</span><br><span class="code-command">}</span></p>
             <p>Simpan & Restart: <span class="code-command">/etc/init.d/isc-dhcp-server restart</span></p>
 
