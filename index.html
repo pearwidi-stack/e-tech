@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengenalan Prompt Engineering</title>
+    <title>Materi Administrasi Sistem Jaringan</title>
     <style>
         :root {
-            --primary: #4F46E5;
+            --primary: #0F766E;
             --bg-color: #F8FAFC;
             --text-main: #1E293B;
             --text-muted: #64748B;
@@ -14,6 +14,11 @@
             --tip-border: #10B981;
             --takeaway-bg: #EFF6FF;
             --takeaway-border: #3B82F6;
+            --code-bg: #1E293B;
+            --code-text: #E2E8F0;
+            --card-bg: #FFFFFF;
+            --card-border: #E2E8F0;
+            --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
         
         * {
@@ -46,6 +51,7 @@
             margin-bottom: 1rem;
             font-size: 0.875rem;
             font-weight: 600;
+            flex-wrap: wrap;
         }
 
         .badge {
@@ -54,7 +60,7 @@
             color: white;
         }
 
-        .badge-difficulty { background-color: #10B981; }
+        .badge-difficulty { background-color: #F59E0B; }
         .badge-time { background-color: var(--text-muted); }
 
         h1 {
@@ -113,6 +119,18 @@
             margin-bottom: 1rem;
         }
 
+        /* Code Blocks untuk perintah Linux */
+        .code-command {
+            display: inline-block;
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            margin: 0.2rem 0;
+        }
+
         /* Callout Boxes */
         .callout {
             padding: 1.25rem 1.5rem;
@@ -169,7 +187,68 @@
             margin-top: 1rem;
             transition: background 0.2s;
         }
-        .btn-next:hover { background-color: #4338CA; }
+        .btn-next:hover { background-color: #0B5A53; }
+
+        /* === STYLES UNTUK DAFTAR MODUL === */
+        .module-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .module-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            background-color: #F8FAFC;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .module-item:hover {
+            border-color: var(--primary);
+            background-color: #FFFFFF;
+            box-shadow: var(--hover-shadow);
+            transform: translateY(-2px);
+        }
+
+        .module-item.active {
+            background-color: var(--tip-bg);
+            border-color: var(--tip-border);
+            color: var(--tip-border);
+            cursor: default;
+        }
+
+        .module-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .module-num {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            font-weight: 800;
+        }
+        .module-item.active .module-num {
+            color: var(--tip-border);
+        }
+
+        .module-status {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            background-color: var(--tip-border);
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
     </style>
 </head>
@@ -177,61 +256,171 @@
 
 <div class="container">
     <div class="header-meta">
-        <span class="badge badge-difficulty">🟢 Pemula</span>
-        <span class="badge badge-time">⏱️ 15 Menit</span>
+        <span class="badge badge-difficulty">🟡 Menengah</span>
+        <span class="badge badge-time">⏱️ 30 Menit</span>
     </div>
     
-    <h1>Pengenalan Prompt Engineering untuk Pemula</h1>
-    <p class="subtitle">Pelajari dasar-dasar komunikasi dengan Artificial Intelligence (AI) untuk menghasilkan respons yang akurat, relevan, dan berkualitas tinggi.</p>
+    <h1>MATERI ADMINISTRASI SISTEM JARINGAN</h1>
+    <p class="subtitle">Konfigurasi FTP Server pada Debian 10 menggunakan VirtualBox. Pelajari cara menginstal, mengkonfigurasi, dan melakukan uji coba transfer file dengan aman.</p>
 
+    <!-- BAGIAN DAFTAR MODUL (LINK MATERI) -->
+    <h2>📚 Daftar Modul Pembelajaran</h2>
+    <div class="module-list">
+        <!-- Modul 1 (Status Aktif) -->
+        <div class="module-item active">
+            <div class="module-left">
+                <span class="module-num">01</span>
+                <span>Konfigurasi FTP Server</span>
+            </div>
+            <span class="module-status">Sedang Dibuka</span>
+        </div>
+
+        <!-- Modul 2 (Link Placeholder) -->
+        <a href="#" class="module-item">
+            <div class="module-left">
+                <span class="module-num">02</span>
+                <span>Konfigurasi Open SSH Server & Telnet</span>
+            </div>
+            <span>→</span>
+        </a>
+
+        <!-- Modul 3 (Link Placeholder) -->
+        <a href="#" class="module-item">
+            <div class="module-left">
+                <span class="module-num">03</span>
+                <span>Konfigurasi DHCP Server</span>
+            </div>
+            <span>→</span>
+        </a>
+
+        <!-- Modul 4 (Link Placeholder) -->
+        <a href="#" class="module-item">
+            <div class="module-left">
+                <span class="module-num">04</span>
+                <span>Konfigurasi DNS Server (Bind9)</span>
+            </div>
+            <span>→</span>
+        </a>
+
+        <!-- Modul 5 (Link Placeholder) -->
+        <a href="#" class="module-item">
+            <div class="module-left">
+                <span class="module-num">05</span>
+                <span>Konfigurasi Web Server (Apache2)</span>
+            </div>
+            <span>→</span>
+        </a>
+
+        <!-- Modul 6 (Link Placeholder) -->
+        <a href="#" class="module-item">
+            <div class="module-left">
+                <span class="module-num">06</span>
+                <span>Konfigurasi Database Server (MariaDB)</span>
+            </div>
+            <span>→</span>
+        </a>
+    </div>
+
+    <!-- AWAL MATERI MODUL 1: FTP SERVER -->
     <h2>🎯 Tujuan Pembelajaran</h2>
     <ul>
-        <li>Memahami konsep dasar dan pentingnya <em>Prompt Engineering</em>.</li>
-        <li>Merumuskan instruksi (prompt) yang terstruktur menggunakan kerangka dasar.</li>
-        <li>Mengiterasi dan menyempurnakan hasil AI agar sesuai dengan kebutuhan spesifik Anda.</li>
+        <li>Melakukan konfigurasi IP statik pada Debian Virtual Machine.</li>
+        <li>Menginstal dan mengkonfigurasi layanan FTP (ProFTPD) melalui repository CD/DVD.</li>
+        <li>Melakukan uji coba koneksi dan transfer file dari klien (Windows) ke Server (Debian) menggunakan FileZilla.</li>
     </ul>
 
     <h2>📋 Persyaratan Prasyarat</h2>
     <ul>
-        <li>Akun aktif pada salah satu platform AI (misal: ChatGPT, Claude, atau Gemini).</li>
-        <li>Koneksi internet yang stabil.</li>
+        <li>Aplikasi VirtualBox / VM sudah terinstal.</li>
+        <li>File ISO Debian 10 (CD 1, 2, dan 3).</li>
+        <li>Aplikasi klien FTP seperti FileZilla atau WinSCP di komputer host.</li>
     </ul>
 
     <h2>📖 Materi Utama: Step-by-Step</h2>
 
-    <h3>Langkah 1: Memahami Anatomi Prompt yang Baik</h3>
-    <p>AI tidak bisa membaca pikiran; ia hanya memahami teks yang diberikan. Prompt yang buruk menghasilkan jawaban yang generik, sedangkan prompt yang baik menghasilkan jawaban yang tajam dan spesifik.</p>
+    <h3>Langkah 1: Konfigurasi Jaringan & IP Server</h3>
+    <p>Pastikan settingan jaringan di VirtualBox menggunakan <strong>Host-only Adapter</strong>. Nyalakan Debian dan login. Kemudian, edit file konfigurasi jaringan untuk membuat IP statik:</p>
+    <p><span class="code-command">nano /etc/network/interfaces</span></p>
+    <p>Masukkan IP statik berikut (Address: 192.168.10.20, Netmask: 255.255.255.0). Simpan dengan <span class="code-command">Ctrl+X</span> lalu <span class="code-command">Y</span> dan Enter. Restart jaringan dan cek IP:</p>
+    <p>
+        <span class="code-command">/etc/init.d/networking restart</span><br>
+        <span class="code-command">ip a</span>
+    </p>
     
     <div class="callout pro-tip">
         <strong>💡 PRO-TIP:</strong><br>
-        Bayangkan Anda sedang memberikan brief pekerjaan kepada asisten magang. Semakin detail dan jelas instruksi Anda, semakin baik hasil kerja mereka.
+        Pada komputer Host (Windows), pastikan IP VirtualBox Host-Only Network diset beda di oktet terakhir (misal: 192.168.10.21). Sebelum melakukan ping, matikan (<em>off</em>) Firewall Windows dan nyalakan (<em>on</em>) File Sharing, kecuali password sharing dimatikan (<em>off</em>). Lakukan uji ping dua arah antara Windows dan Debian.
     </div>
+
+    <h3>Langkah 2: Instalasi ProFTPD via Repository CD</h3>
+    <p>Karena menggunakan repository offline, kita harus memasukkan ISO Debian satu per satu. Mulai dengan memasukkan CD 1 Debian (Devices => Optical Devices => CD 1). Jalankan perintah berikut secara berurutan:</p>
+    <p>
+        <span class="code-command">apt-cdrom add</span><br>
+        <span class="code-command">apt-get update</span><br>
+        <span class="code-command">apt-get upgrade</span>
+    </p>
+    <p>Lakukan hal yang sama untuk CD 2 (masukkan CD, lalu jalankan ketiga perintah di atas). Setelah selesai, instal paket FTP server (ProFTPD):</p>
+    <p>
+        <span class="code-command">apt-get install proftpd</span> (Tekan <strong>Y</strong> lalu Enter)
+    </p>
 
     <div class="img-placeholder">
-        [Gambar Placeholder: Infografis perbandingan visual antara Prompt Buruk vs Prompt Baik]
+        [Gambar Placeholder: Tampilan pemilihan mode instalasi ProFTPD (pilih standalone)]
     </div>
 
-    <h3>Langkah 2: Menerapkan Formula Sihir (RTCF)</h3>
-    <p>Untuk memudahkan Anda dalam menyusun prompt, gunakan formula <strong>RTCF (Role, Task, Context, Format)</strong>. Formula ini memastikan tidak ada informasi penting yang terlewat.</p>
+    <h3>Langkah 3: Konfigurasi File ProFTPD</h3>
+    <p>Buka file konfigurasi ProFTPD dengan perintah:</p>
+    <p><span class="code-command">nano /etc/proftpd/proftpd.conf</span></p>
+    <p>Lakukan perubahan baris berikut di dalam file tersebut:</p>
+    <ul>
+        <li>Ubah IPv6 dari <code>On</code> menjadi <code>Off</code>.</li>
+        <li>Ubah waktu timeout: <code>6000</code> menjadi <code>600</code>, dan <code>12000</code> menjadi <code>1200</code>.</li>
+        <li>Hilangkan tanda pagar (<code>#</code>) pada baris <code>DefaultRoot</code>.</li>
+        <li>Ubah Port dari <code>21</code> menjadi <code>22</code>.</li>
+        <li>Cari baris <code>#&lt;anonymous ~ftp&gt;</code> dan kata <code>User</code>, hilangkan tanda pagar (<code>#</code>) di awal baris tersebut.</li>
+        <li>Cari baris penutup <code>#&lt;/anonymous&gt;</code> terakhir, hilangkan tanda pagarnya.</li>
+    </ul>
+    <p>Simpan file (<span class="code-command">Ctrl+X</span>, <span class="code-command">Y</span>) dan restart layanan ProFTPD:</p>
+    <p><span class="code-command">/etc/init.d/proftpd restart</span></p>
+
+    <div class="img-placeholder">
+        [Gambar Placeholder: Perbandingan isi file proftpd.conf Sebelum dan Sesudah Dirubah]
+    </div>
+
+    <h3>Langkah 4: Pembuatan User & Uji Coba Klien</h3>
+    <p>Buat user baru untuk login ke FTP server. Misalnya kita buat user bernama "joko":</p>
+    <p><span class="code-command">adduser joko</span></p>
+    <p>Masukkan password (misal: 1234) dan masukkan kembali passwordnya. Tekan enter terus sampai muncul pilihan Y/N, pilih <strong>Y</strong> dan Enter.</p>
     
-    <div class="img-placeholder">
-        [Gambar Placeholder: Diagram lingkaran (Circle Diagram) yang memecah formula RTCF]
+    <p>Buka aplikasi <strong>FileZilla</strong> di komputer Windows Anda. Masukkan data koneksi berikut:</p>
+    <ul>
+        <li><strong>Host:</strong> 192.168.10.20</li>
+        <li><strong>Username:</strong> joko</li>
+        <li><strong>Password:</strong> 1234</li>
+        <li><strong>Port:</strong> 22</li>
+    </ul>
+    <p>Klik <strong>Quickconnect</strong>. Jika muncul popup, klik <strong>OK</strong>. Jika berhasil, Anda akan melihat direktori server di sebelah kanan.</p>
+
+    <div class="callout pro-tip">
+        <strong>💡 PRO-TIP:</strong><br>
+        Untuk memastikan file transfer berfungsi, coba pindahkan file dari komputer Windows (panel kiri FileZilla) ke direktori server Debian (panel kanan). Anda bisa mengeceknya di Debian melalui terminal dengan perintah: <span class="code-command">cd /home/joko/</span> lalu ketik <span class="code-command">ls</span> untuk melihat isi direktori.
     </div>
 
     <h2>📦 Poin Kunci / Takeaway</h2>
     <div class="callout takeaway">
         <strong>🌟 Ringkasan Pertemuan</strong>
         <ul>
-            <li><strong>Prompt = Instruksi:</strong> Berikan peran, tugas, konteks, dan format yang jelas.</li>
-            <li><strong>RTCF Formula:</strong> Gunakan kerangka ini agar tidak ada instruksi yang terlewat.</li>
-            <li><strong>Iterasi adalah Kunci:</strong> Jangan menyerah pada hasil pertama. Koreksi dan arahkan AI hingga mendapatkan hasil ideal.</li>
+            <li><strong>IP Host-only:</strong> IP server dan IP komputer host harus berada di subnet yang sama agar bisa saling terhubung.</li>
+            <li><strong>Repository CD:</strong> Gunakan <code>apt-cdrom add</code> setiap kali mengganti ISO Debian untuk memperbarui database paket offline.</li>
+            <li><strong>Keamanan Dasar:</strong> Penggunaan <code>DefaultRoot</code> mengunci user FTP hanya ke folder home masing-masing, mencegah akses ke root sistem.</li>
+            <li><strong>Pengujian:</strong> Selalu lakukan uji coba transfer file untuk memastikan layanan FTP berjalan dua arah.</li>
         </ul>
     </div>
 
     <h2>🚀 Rangkuman & Langkah Selanjutnya</h2>
-    <p>Selamat! Anda kini telah menguasai dasar-dasar Prompt Engineering. Dengan menggunakan formula RTCF dan kebiasaan melakukan iterasi, Anda dapat mengubah AI dari sekadar alat menjadi asisten pribadi yang sangat cerdas dan akurat.</p>
+    <p>Selamat! Anda telah berhasil mengkonfigurasi FTP Server menggunakan Debian 10 dan VirtualBox. Anda kini memahami cara seting IP statik, instalasi paket offline, konfigurasi ProFTPD, dan manajemen user FTP.</p>
     
-    <a href="#" class="btn-next">Lanjut ke Materi Berikutnya →</a>
+    <a href="#" class="btn-next">Lanjut ke Modul 2: Open SSH Server →</a>
 </div>
 
 </body>
