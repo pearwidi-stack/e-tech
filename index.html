@@ -7,13 +7,57 @@
     <style>
         :root { --primary: #0F766E; --bg-color: #F1F5F9; --text-main: #1E293B; --text-muted: #64748B; --tip-bg: #ECFDF5; --tip-border: #10B981; --takeaway-bg: #EFF6FF; --takeaway-border: #3B82F6; --code-bg: #1E293B; --code-text: #E2E8F0; --card-border: #E2E8F0; --hover-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; padding: 2rem 1rem; }
         
+        /* Background Gradasi agar efek kaca terlihat */
+        body { 
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); 
+            color: var(--text-main); 
+            line-height: 1.6; 
+            padding: 0 1rem 2rem 1rem; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+        }
+        
+        /* === HEADER BERJALAN (GLASSMORPHISM) === */
+        .marquee-header {
+            background: rgba(255, 215, 0, 0.25); /* Emas Transparan */
+            backdrop-filter: blur(10px); /* Efek Kaca Blur */
+            -webkit-backdrop-filter: blur(10px);
+            color: #000000;
+            padding: 0.75rem 0;
+            overflow: hidden;
+            margin: 1rem auto 2rem auto; /* Margin agar melayang */
+            border-radius: 16px; /* Sudut membulat */
+            width: 100%;
+            max-width: 1200px;
+            border: 1px solid rgba(255, 215, 0, 0.4); /* Border emas tipis */
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15); /* Bayangan lembut */
+            text-shadow: 0 1px 1px rgba(255,255,255,0.5); /* Bayangan teks agar membaca di kaca */
+        }
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 40s linear infinite; /* Diperlambat dari 20s menjadi 40s */
+        }
+        .marquee-text {
+            padding-right: 50px;
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         /* Layout Grid 2 Kolom */
-        .layout-wrapper { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 300px 1fr; gap: 2rem; }
+        .layout-wrapper { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 300px 1fr; gap: 2rem; flex: 1; }
 
         /* SIDEBAR KIRI */
-        .sidebar { background: #FFF; border-radius: 16px; padding: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); height: fit-content; position: sticky; top: 2rem; }
+        .sidebar { background: #FFF; border-radius: 16px; padding: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); height: fit-content; position: sticky; top: 1rem; }
         .sidebar h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 1rem; border-bottom: 2px solid #E2E8F0; padding-bottom: 0.5rem; }
         .module-list { display: flex; flex-direction: column; gap: 0.5rem; }
         .module-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background-color: #F8FAFC; border: 1px solid transparent; border-radius: 8px; text-decoration: none; color: var(--text-main); transition: all 0.2s ease; font-weight: 600; font-size: 0.9rem; cursor: pointer; }
@@ -47,15 +91,57 @@
         .module-content.active-content { display: block; animation: fadeIn 0.4s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* === FOOTER BAWAH === */
+        .main-footer {
+            background-color: #1E293B;
+            color: #CBD5E1;
+            margin-top: 3rem;
+            padding: 2.5rem 1rem;
+            border-radius: 16px 16px 0 0;
+            width: 100%;
+        }
+        .footer-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .footer-col { flex: 1; min-width: 250px; }
+        .footer-col h3 { color: #FFF; font-size: 1.1rem; margin-bottom: 0.75rem; border: none; padding: 0; }
+        .footer-col p { font-size: 0.9rem; color: #94A3B8; line-height: 1.5; margin: 0; }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            border-top: 1px solid #334155;
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748B;
+        }
+        .footer-bottom strong { color: #FFD700; }
+
         /* Responsif untuk HP */
         @media (max-width: 768px) {
             .layout-wrapper { grid-template-columns: 1fr; }
             .sidebar { position: static; }
             .main-content { padding: 1.5rem; }
+            .footer-wrapper { flex-direction: column; }
         }
     </style>
 </head>
 <body>
+
+<!-- HEADER BERJALAN EFEK KACA (GLASS) -->
+<div class="marquee-header">
+    <div class="marquee-track">
+        <span class="marquee-text">SELAMAT DATANG DI PAGE INFORMATION-EDUCATION-LEARNING-KNOWLEDGE •</span>
+        <span class="marquee-text">SELAMAT DATANG DI PAGE INFORMATION-EDUCATION-LEARNING-KNOWLEDGE •</span>
+        <span class="marquee-text">SELAMAT DATANG DI PAGE INFORMATION-EDUCATION-LEARNING-KNOWLEDGE •</span>
+        <span class="marquee-text">SELAMAT DATANG DI PAGE INFORMATION-EDUCATION-LEARNING-KNOWLEDGE •</span>
+    </div>
+</div>
 
 <div class="layout-wrapper">
     
@@ -369,6 +455,23 @@
 
     </main>
 </div>
+
+<!-- === FOOTER BAWAH === -->
+<footer class="main-footer">
+    <div class="footer-wrapper">
+        <div class="footer-col">
+            <h3>Tentang Administrasi Sistem Jaringan</h3>
+            <p>Administrasi Sistem Jaringan adalah proses pengelolaan, perawatan, dan pengamanan infrastruktur jaringan komputer serta server. Mencakup konfigurasi layanan seperti FTP, SSH, DHCP, DNS, Web Server, dan Database agar sistem dapat berjalan stabil, aman, dan efisien.</p>
+        </div>
+        <div class="footer-col">
+            <h3>Informasi Pembelajaran</h3>
+            <p>Materi disusun untuk praktikum berbasis Debian 10,11,12,13 dan VirtualBox dan VMware</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 <strong>copyright@pearparadiso</strong>. All Rights Reserved.</p>
+    </div>
+</footer>
 
 <!-- SCRIPT UNTUK MEMBUAT TOMBOL DI-KLIK -->
 <script>
